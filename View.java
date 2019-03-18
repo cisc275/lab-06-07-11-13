@@ -70,7 +70,7 @@ public class View extends JPanel {
 		pica = new BufferedImage[8][11];
 		for (Direction di : Direction.values()) {
 			File f;
-			f = new File("pictures/orc_animation/orc_forward_" + di + ".png");
+			f = new File("orcImages/orc_forward_" + di + ".png");
 			BufferedImage im = createImage(f);
 			pica[arrayCounter][0]= im;
 			arrayCounter++;
