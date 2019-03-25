@@ -125,6 +125,11 @@ public class View extends JPanel {
 
 	}
 
+	public static void main(String [] args) {
+		Controller c = new Controller();
+		c.start();
+	}
+
 	public int getImageWidth() {
 		return imgWidth;
 	}
