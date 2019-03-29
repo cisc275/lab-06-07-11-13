@@ -1,5 +1,8 @@
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 /**
  * Do not modify this file without permission from your TA.
@@ -31,7 +34,7 @@ public class Controller {
                 view.pauseBool = !view.pauseBool;
             }
         });
-
+        
     }
 
     //run the simulation

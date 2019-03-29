@@ -11,6 +11,8 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -18,11 +20,13 @@ import java.util.ArrayList;
 
 @SuppressWarnings("serial")
 public class View extends JPanel {
-    static JFrame frame = new JFrame();
+    JFrame frame = new JFrame();
     final int forwardFrameCount = 10;
     final int fireFrameCount = 4;
     final int jumpFrameCount = 8;
-    int picNum = 0;
+    int forwardPicNum = 0;
+    int firePicNum = 0;
+    int jumpPicNum = 0;
     BufferedImage[][] forwardPics;
     BufferedImage[][] firePics;
     BufferedImage[][] jumpPics;
@@ -38,7 +42,7 @@ public class View extends JPanel {
 
     JButton b = new JButton("Pause");
     public boolean pauseBool = false;
-
+    
     public boolean fireBool = false;
     public boolean jumpBool = false;
 
@@ -78,13 +82,13 @@ public class View extends JPanel {
     public void paint(Graphics g) {
         if (!pauseBool) {
         	if (fireBool) {
-        		picNum = (picNum + 1) % fireFrameCount;
+        		firePicNum = (firePicNum + 1) % fireFrameCount;
         	}
         	if (jumpBool) {
-        		picNum = (picNum + 1) % jumpFrameCount;
+        		jumpPicNum = (jumpPicNum + 1) % jumpFrameCount;
         	}
         	else {
-        		picNum = (picNum + 1) % forwardFrameCount;
+        		forwardPicNum = (forwardPicNum + 1) % forwardFrameCount;
         	}
         }
         //Switch statement to determine which direction to use then calling the hasCollided statements to change the 'direction' (Direction)
@@ -93,65 +97,65 @@ public class View extends JPanel {
 
             case SOUTHWEST:
                 if (fireBool) {
-                    g.drawImage(firePics[3][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == fireFrameCount - 1) {
+                    g.drawImage(firePics[1][firePicNum], xloc, yloc, Color.gray, this);
+                    if (firePicNum == fireFrameCount - 1) {
                         fireBool = !fireBool;
                     }
                 } else if (jumpBool) {
-                    g.drawImage(jumpPics[3][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == jumpFrameCount - 1) {
+                    g.drawImage(jumpPics[1][jumpPicNum], xloc, yloc, Color.gray, this);
+                    if (jumpPicNum == jumpFrameCount - 1) {
                         jumpBool = !jumpBool;
                     }
                 } else {
-                    g.drawImage(forwardPics[3][picNum], xloc, yloc, Color.gray, this);
+                    g.drawImage(forwardPics[3][forwardPicNum], xloc, yloc, Color.gray, this);
                 }
                 break;
 
             case SOUTHEAST:
-                if (fireBool) {
-                    g.drawImage(firePics[2][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == fireFrameCount - 1) {
+            	if (fireBool) {
+                    g.drawImage(firePics[0][firePicNum], xloc, yloc, Color.gray, this);
+                    if (firePicNum == fireFrameCount - 1) {
                         fireBool = !fireBool;
                     }
                 } else if (jumpBool) {
-                    g.drawImage(jumpPics[2][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == jumpFrameCount - 1) {
+                    g.drawImage(jumpPics[0][jumpPicNum], xloc, yloc, Color.gray, this);
+                    if (jumpPicNum == jumpFrameCount - 1) {
                         jumpBool = !jumpBool;
                     }
                 } else {
-                    g.drawImage(forwardPics[2][picNum], xloc, yloc, Color.gray, this);
+                    g.drawImage(forwardPics[2][forwardPicNum], xloc, yloc, Color.gray, this);
                 }
                 break;
 
             case NORTHEAST:
-                if (fireBool) {
-                    g.drawImage(firePics[0][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == fireFrameCount - 1) {
+            	if (fireBool) {
+                    g.drawImage(firePics[2][firePicNum], xloc, yloc, Color.gray, this);
+                    if (firePicNum == fireFrameCount - 1) {
                         fireBool = !fireBool;
                     }
                 } else if (jumpBool) {
-                    g.drawImage(jumpPics[0][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == jumpFrameCount - 1) {
+                    g.drawImage(jumpPics[2][jumpPicNum], xloc, yloc, Color.gray, this);
+                    if (jumpPicNum == jumpFrameCount - 1) {
                         jumpBool = !jumpBool;
                     }
                 } else {
-                    g.drawImage(forwardPics[0][picNum], xloc, yloc, Color.gray, this);
+                    g.drawImage(forwardPics[0][forwardPicNum], xloc, yloc, Color.gray, this);
                 }
                 break;
 
             case NORTHWEST:
-                if (fireBool) {
-                    g.drawImage(firePics[1][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == fireFrameCount - 1) {
+            	if (fireBool) {
+                    g.drawImage(firePics[3][firePicNum], xloc, yloc, Color.gray, this);
+                    if (firePicNum == fireFrameCount - 1) {
                         fireBool = !fireBool;
                     }
                 } else if (jumpBool) {
-                    g.drawImage(jumpPics[1][picNum], xloc, yloc, Color.gray, this);
-                    if (picNum == jumpFrameCount - 1) {
+                    g.drawImage(jumpPics[3][jumpPicNum], xloc, yloc, Color.gray, this);
+                    if (jumpPicNum == jumpFrameCount - 1) {
                         jumpBool = !jumpBool;
                     }
                 } else {
-                    g.drawImage(forwardPics[1][picNum], xloc, yloc, Color.gray, this);
+                    g.drawImage(forwardPics[1][forwardPicNum], xloc, yloc, Color.gray, this);
                 }
                 break;
         }
@@ -212,6 +216,28 @@ public class View extends JPanel {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(frameWidth, frameHeight);
         frame.setVisible(true);
+        
+        frame.addKeyListener(new KeyListener() {
+        	public void keyPressed(KeyEvent e) {
+        		if (e.getKeyChar() == 'f') {
+        			fireBool = true;
+        		}
+        		else if (e.getKeyChar() == 'j') {
+        			jumpBool = true;
+        		}
+        	}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				//In place just to have all required methods
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				//In place just to have all required methods
+			}
+        });
+        frame.setFocusable(true);
     }
 
 
