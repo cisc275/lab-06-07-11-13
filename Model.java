@@ -19,8 +19,26 @@ public class Model {
     int frameHeight;
     int imgWidth;
     int imgHeight;
+    int xPause;
+    int yPause;
 
-    public Model(int width, int height, int imageWidth, int imageHeight) {
+    public int getxPause() {
+		return xPause;
+	}
+
+	public void setxPause(int xPause) {
+		this.xPause = xPause;
+	}
+
+	public int getyPause() {
+		return yPause;
+	}
+
+	public void setyPause(int yPause) {
+		this.yPause = yPause;
+	}
+
+	public Model(int width, int height, int imageWidth, int imageHeight) {
         this.frameWidth = width;
         this.frameHeight = height;
         this.imgWidth = imageWidth;
@@ -38,56 +56,78 @@ public class Model {
 
         switch (d) {
 
-            case SOUTHWEST:
+        case SOUTHWEST:
+        	if ((xloc < 0)&&(yloc > frameHeight - imgHeight)){
+                d = Direction.NORTHEAST;
+        	}
+        	else if (xloc < 0 || xloc > frameWidth - imgWidth) {
+                d = Direction.SOUTHEAST;
+            }
+            else if (yloc < 0 || yloc > frameHeight - imgHeight) {
+                d = Direction.NORTHWEST;
+            }
 
-                if (xloc < 0 || xloc > frameWidth - imgWidth) {
-                    d = Direction.SOUTHEAST;
-                }
-                if (yloc < 0 || yloc > frameHeight - imgHeight) {
-                    d = Direction.NORTHWEST;
-                }
+            break;
 
-                break;
+        case SOUTHEAST:
+        	if ((xloc > frameWidth - imgWidth)&&(yloc > frameHeight - imgHeight)){
+                d = Direction.NORTHWEST;
+        	}
+        	else if (xloc < 0 || xloc > frameWidth - imgWidth) {
+                d = Direction.SOUTHWEST;
+            }
+        	else if (yloc < 0 || yloc > frameHeight - imgHeight) {
+                d = Direction.NORTHEAST;
+            }
 
-            case SOUTHEAST:
+            break;
 
-                if (xloc < 0 || xloc > frameWidth - imgWidth) {
-                    d = Direction.SOUTHWEST;
-                }
-                if (yloc < 0 || yloc > frameHeight - imgHeight) {
-                    d = Direction.NORTHEAST;
-                }
+        case NORTHEAST:
+        	if ((xloc > frameWidth - imgWidth)&&(yloc < 0 )){
+                d = Direction.SOUTHWEST;
+        	}
+        	else if (xloc < 0 || xloc > frameWidth - imgWidth) {
+                d = Direction.NORTHWEST;
+                System.out.println("NE to NW");
 
-                break;
+            }
+            else if (yloc < 0 || yloc > frameHeight - imgHeight) {
+                d = Direction.SOUTHEAST;
 
-            case NORTHEAST:
+            }
 
-                if (xloc < 0 || xloc > frameWidth - imgWidth) {
-                    d = Direction.NORTHWEST;
-                }
-                if (yloc < 0 || yloc > frameHeight - imgHeight) {
-                    d = Direction.SOUTHEAST;
-                }
+            break;
 
-                break;
+        case NORTHWEST:
+        	if ((xloc < 0)&&(yloc < 0 )){
+                d = Direction.SOUTHEAST;
+        	}
+        	else if (xloc < 0 || xloc > frameWidth - imgWidth) {
+                d = Direction.NORTHEAST;
+            }
+            else if (yloc < 0 || yloc > frameHeight - imgHeight) {
+                d = Direction.SOUTHWEST;
 
-            case NORTHWEST:
+            }
 
-                if (xloc < 0 || xloc > frameWidth - imgWidth) {
-                    d = Direction.NORTHEAST;
-                }
-                if (yloc < 0 || yloc > frameHeight - imgHeight) {
-                    d = Direction.SOUTHWEST;
-                }
-
-                break;
-        }
-
-        xloc += xIncr;
-        yloc += yIncr;
+            break;
     }
 
+    xloc += xIncr;
+    yloc += yIncr;
+}
 
+    public void isFiring(boolean fire) {
+    	if(fire) {
+        	setX(getxPause());
+        	setY(getyPause());
+        }
+        else {
+        setxPause(getX());
+    	setyPause(getY());
+        }
+    }
+    
     public int getX() {
         return xloc;
     }

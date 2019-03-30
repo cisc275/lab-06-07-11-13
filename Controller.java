@@ -35,25 +35,25 @@ public class Controller {
         });
         view.frame.addKeyListener(new KeyListener() {
         	public void keyPressed(KeyEvent e) {
-        		System.out.println(e.getKeyCode());
+        		//System.out.println(e.getKeyCode());
         		if (e.getKeyChar() == 'f') {
         			view.fireBool = true;
         		}
-        		
-        		else if (e.getKeyChar() == 'j') {
+        											// change to this for either j or space to jump
+        		else if (e.getKeyChar() == ('j')) { // else if ((e.getKeyChar() == ('j')) || (e.getKeyChar() == e.VK_SPACE)) {
         			view.jumpBool = true;
         		}
         		
-        		if (e.getKeyCode() == 37) {
+        		if (e.getKeyCode() == KeyEvent.VK_LEFT) {
         			model.setDirect(Direction.NORTHWEST);
         		}
-        		else if (e.getKeyCode() == 38) {
+        		else if (e.getKeyCode() == KeyEvent.VK_UP) {
         			model.setDirect(Direction.NORTHEAST);
         		}
-        		else if (e.getKeyCode() == 39) {
+        		else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
         			model.setDirect(Direction.SOUTHEAST);
         		}
-        		else if (e.getKeyCode() == 40) {
+        		else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
         			model.setDirect(Direction.SOUTHWEST);
         		}
         	}
@@ -76,6 +76,8 @@ public class Controller {
         for (int i = 0; i < 5000; i++) {
             //increment the x and y coordinates, alter direction if necessary
             model.updateLocationAndDirection();
+            //checks if orc is firing to halt movement for duration of animation
+            model.isFiring(view.fireBool);
             //update the view
             view.update(model.getX(), model.getY(), model.getDirect());
         }

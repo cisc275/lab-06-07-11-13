@@ -94,70 +94,87 @@ public class View extends JPanel {
         //Switch statement to determine which direction to use then calling the hasCollided statements to change the 'direction' (Direction)
         switch (direction) {
 
-            case SOUTHWEST:
-                if (fireBool) {
-                    g.drawImage(firePics[1][firePicNum], xloc, yloc, Color.gray, this);
-                    if (firePicNum == fireFrameCount - 1) {
-                        fireBool = !fireBool;
-                    }
-                } else if (jumpBool) {
-                    g.drawImage(jumpPics[1][jumpPicNum], xloc, yloc, Color.gray, this);
-                    if (jumpPicNum == jumpFrameCount - 1) {
-                        jumpBool = !jumpBool;
-                    }
-                } else {
-                    g.drawImage(forwardPics[3][forwardPicNum], xloc, yloc, Color.gray, this);
+        case SOUTHWEST:
+            if (fireBool) {
+            	jumpBool = false;
+            	jumpPicNum = 0;
+                g.drawImage(firePics[3][firePicNum], xloc, yloc, Color.gray, this);
+                if (firePicNum == fireFrameCount - 1) {
+                    fireBool = false;
                 }
-                break;
+            } else if (jumpBool) {
+                fireBool = false;
+                firePicNum =0;
+                g.drawImage(jumpPics[3][jumpPicNum], xloc, yloc, Color.gray, this);
+                if (jumpPicNum == jumpFrameCount - 1) {
+                    jumpBool = false;
+                }
+            } else {
+                g.drawImage(forwardPics[3][forwardPicNum], xloc, yloc, Color.gray, this);
+            }
+            break;
 
-            case SOUTHEAST:
-            	if (fireBool) {
-                    g.drawImage(firePics[0][firePicNum], xloc, yloc, Color.gray, this);
-                    if (firePicNum == fireFrameCount - 1) {
-                        fireBool = !fireBool;
-                    }
-                } else if (jumpBool) {
-                    g.drawImage(jumpPics[0][jumpPicNum], xloc, yloc, Color.gray, this);
-                    if (jumpPicNum == jumpFrameCount - 1) {
-                        jumpBool = !jumpBool;
-                    }
-                } else {
-                    g.drawImage(forwardPics[2][forwardPicNum], xloc, yloc, Color.gray, this);
+        case SOUTHEAST:
+        	if (fireBool) {
+                jumpBool = false;
+                jumpPicNum = 0;
+                g.drawImage(firePics[2][firePicNum], xloc, yloc, Color.gray, this);
+                if (firePicNum == fireFrameCount - 1) {
+                    fireBool = false;
                 }
-                break;
+            } else if (jumpBool) {
+            	fireBool = false;
+            	firePicNum =0;
+                g.drawImage(jumpPics[2][jumpPicNum], xloc, yloc, Color.gray, this);
+                if (jumpPicNum == jumpFrameCount - 1) {
+                    jumpBool = false;
+                }
+            } else {
+                g.drawImage(forwardPics[2][forwardPicNum], xloc, yloc, Color.gray, this);
+                
+            }
+            break;
 
-            case NORTHEAST:
-            	if (fireBool) {
-                    g.drawImage(firePics[2][firePicNum], xloc, yloc, Color.gray, this);
-                    if (firePicNum == fireFrameCount - 1) {
-                        fireBool = !fireBool;
-                    }
-                } else if (jumpBool) {
-                    g.drawImage(jumpPics[2][jumpPicNum], xloc, yloc, Color.gray, this);
-                    if (jumpPicNum == jumpFrameCount - 1) {
-                        jumpBool = !jumpBool;
-                    }
-                } else {
-                    g.drawImage(forwardPics[0][forwardPicNum], xloc, yloc, Color.gray, this);
+        case NORTHEAST:
+        	if (fireBool) {
+        		jumpBool = false;
+                jumpPicNum = 0;
+                g.drawImage(firePics[0][firePicNum], xloc, yloc, Color.gray, this);
+                if (firePicNum == fireFrameCount - 1) {
+                    fireBool = !fireBool;
                 }
-                break;
+            } else if (jumpBool) {
+            	fireBool = false;
+            	firePicNum =0;
+                g.drawImage(jumpPics[0][jumpPicNum], xloc, yloc, Color.gray, this);
+                if (jumpPicNum == jumpFrameCount - 1) {
+                    jumpBool = !jumpBool;
+                }
+            } else {
+                g.drawImage(forwardPics[0][forwardPicNum], xloc, yloc, Color.gray, this);
+            }
+            break;
 
-            case NORTHWEST:
-            	if (fireBool) {
-                    g.drawImage(firePics[3][firePicNum], xloc, yloc, Color.gray, this);
-                    if (firePicNum == fireFrameCount - 1) {
-                        fireBool = !fireBool;
-                    }
-                } else if (jumpBool) {
-                    g.drawImage(jumpPics[3][jumpPicNum], xloc, yloc, Color.gray, this);
-                    if (jumpPicNum == jumpFrameCount - 1) {
-                        jumpBool = !jumpBool;
-                    }
-                } else {
-                    g.drawImage(forwardPics[1][forwardPicNum], xloc, yloc, Color.gray, this);
+        case NORTHWEST:
+        	if (fireBool) {
+        		jumpBool = false;
+                jumpPicNum = 0;
+                g.drawImage(firePics[1][firePicNum], xloc, yloc, Color.gray, this);
+                if (firePicNum == fireFrameCount -1 ) {
+                    fireBool = !fireBool;
                 }
-                break;
-        }
+            } else if (jumpBool) {
+            	fireBool = false;
+            	firePicNum =0;
+                g.drawImage(jumpPics[1][jumpPicNum], xloc, yloc, Color.gray, this);
+                if (jumpPicNum == jumpFrameCount - 1) {
+                    jumpBool = !jumpBool;
+                }
+            } else {
+                g.drawImage(forwardPics[1][forwardPicNum], xloc, yloc, Color.gray, this);
+            }
+            break;
+    }
     }
 
     public static void main(String[] args) {
