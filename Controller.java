@@ -26,13 +26,47 @@ public class Controller {
                     tempYIncr = model.getYIncr();
                     model.setXIncr(0);
                     model.setYIncr(0);
-                    modelDir = model.getDirect();
                 } else {
                     model.setXIncr(tempXIncr);
                     model.setYIncr(tempYIncr);
                 }
                 view.pauseBool = !view.pauseBool;
             }
+        });
+        view.frame.addKeyListener(new KeyListener() {
+        	public void keyPressed(KeyEvent e) {
+        		System.out.println(e.getKeyCode());
+        		if (e.getKeyChar() == 'f') {
+        			view.fireBool = true;
+        		}
+        		
+        		else if (e.getKeyChar() == 'j') {
+        			view.jumpBool = true;
+        		}
+        		
+        		if (e.getKeyCode() == 37) {
+        			model.setDirect(Direction.NORTHWEST);
+        		}
+        		else if (e.getKeyCode() == 38) {
+        			model.setDirect(Direction.NORTHEAST);
+        		}
+        		else if (e.getKeyCode() == 39) {
+        			model.setDirect(Direction.SOUTHEAST);
+        		}
+        		else if (e.getKeyCode() == 40) {
+        			model.setDirect(Direction.SOUTHWEST);
+        		}
+        	}
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+				//In place just to have all required methods
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+				//In place just to have all required methods
+			}
         });
         
     }

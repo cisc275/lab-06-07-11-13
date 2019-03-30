@@ -92,7 +92,6 @@ public class View extends JPanel {
         	}
         }
         //Switch statement to determine which direction to use then calling the hasCollided statements to change the 'direction' (Direction)
-
         switch (direction) {
 
             case SOUTHWEST:
@@ -217,26 +216,6 @@ public class View extends JPanel {
         frame.setSize(frameWidth, frameHeight);
         frame.setVisible(true);
         
-        frame.addKeyListener(new KeyListener() {
-        	public void keyPressed(KeyEvent e) {
-        		if (e.getKeyChar() == 'f') {
-        			fireBool = true;
-        		}
-        		else if (e.getKeyChar() == 'j') {
-        			jumpBool = true;
-        		}
-        	}
-
-			@Override
-			public void keyTyped(KeyEvent e) {
-				//In place just to have all required methods
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				//In place just to have all required methods
-			}
-        });
         frame.setFocusable(true);
     }
 
