@@ -96,16 +96,12 @@ public class View extends JPanel {
 
         case SOUTHWEST:
             if (fireBool) {
-            	jumpBool = false;
-            	jumpPicNum = 0;
-                g.drawImage(firePics[3][firePicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(firePics[1][firePicNum], xloc, yloc, Color.gray, this);
                 if (firePicNum == fireFrameCount - 1) {
                     fireBool = false;
                 }
             } else if (jumpBool) {
-                fireBool = false;
-                firePicNum =0;
-                g.drawImage(jumpPics[3][jumpPicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(jumpPics[1][jumpPicNum], xloc, yloc, Color.gray, this);
                 if (jumpPicNum == jumpFrameCount - 1) {
                     jumpBool = false;
                 }
@@ -116,16 +112,12 @@ public class View extends JPanel {
 
         case SOUTHEAST:
         	if (fireBool) {
-                jumpBool = false;
-                jumpPicNum = 0;
-                g.drawImage(firePics[2][firePicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(firePics[0][firePicNum], xloc, yloc, Color.gray, this);
                 if (firePicNum == fireFrameCount - 1) {
                     fireBool = false;
                 }
             } else if (jumpBool) {
-            	fireBool = false;
-            	firePicNum =0;
-                g.drawImage(jumpPics[2][jumpPicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(jumpPics[0][jumpPicNum], xloc, yloc, Color.gray, this);
                 if (jumpPicNum == jumpFrameCount - 1) {
                     jumpBool = false;
                 }
@@ -137,16 +129,12 @@ public class View extends JPanel {
 
         case NORTHEAST:
         	if (fireBool) {
-        		jumpBool = false;
-                jumpPicNum = 0;
-                g.drawImage(firePics[0][firePicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(firePics[2][firePicNum], xloc, yloc, Color.gray, this);
                 if (firePicNum == fireFrameCount - 1) {
                     fireBool = !fireBool;
                 }
             } else if (jumpBool) {
-            	fireBool = false;
-            	firePicNum =0;
-                g.drawImage(jumpPics[0][jumpPicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(jumpPics[2][jumpPicNum], xloc, yloc, Color.gray, this);
                 if (jumpPicNum == jumpFrameCount - 1) {
                     jumpBool = !jumpBool;
                 }
@@ -157,16 +145,12 @@ public class View extends JPanel {
 
         case NORTHWEST:
         	if (fireBool) {
-        		jumpBool = false;
-                jumpPicNum = 0;
-                g.drawImage(firePics[1][firePicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(firePics[3][firePicNum], xloc, yloc, Color.gray, this);
                 if (firePicNum == fireFrameCount -1 ) {
                     fireBool = !fireBool;
                 }
             } else if (jumpBool) {
-            	fireBool = false;
-            	firePicNum =0;
-                g.drawImage(jumpPics[1][jumpPicNum], xloc, yloc, Color.gray, this);
+                g.drawImage(jumpPics[3][jumpPicNum], xloc, yloc, Color.gray, this);
                 if (jumpPicNum == jumpFrameCount - 1) {
                     jumpBool = !jumpBool;
                 }

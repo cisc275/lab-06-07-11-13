@@ -88,7 +88,6 @@ public class Model {
         	}
         	else if (xloc < 0 || xloc > frameWidth - imgWidth) {
                 d = Direction.NORTHWEST;
-                System.out.println("NE to NW");
 
             }
             else if (yloc < 0 || yloc > frameHeight - imgHeight) {
